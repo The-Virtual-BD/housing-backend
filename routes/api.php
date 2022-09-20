@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ApproverAuthController;
 use App\Http\Controllers\ApproverController;
@@ -71,7 +72,6 @@ Route::prefix('user')->group(function () {
         Route::post('support_conversations/{conversation}/send-message', [SupportConversationController::class, 'sendMessage']);
         Route::apiResource('support_conversations', SupportConversationController::class)->except('index', 'update', 'destroy');
     });
-
 });
 
 
@@ -173,6 +173,7 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('housing_models', HousingModelController::class);
         Route::apiResource('messages', MessageController::class)->except('create', 'update');
         Route::apiResource('posts', PostController::class);
+        Route::apiResource('almubs', AlbumController::class);
 
         Route::get('support_conversations/{conversation}/resolve', [SupportConversationController::class, 'resolveConversation']);
         Route::post('support_conversations/{conversation}/send-message', [SupportConversationController::class, 'sendMessage']);
@@ -188,6 +189,4 @@ Route::prefix('admin')->group(function () {
             Route::get('get-subdivision-stats', [AdminDashboardController::class, 'getSubdivisionStats']);
         });
     });
-
 });
-
