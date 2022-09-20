@@ -10,6 +10,7 @@ use App\Http\Controllers\ExecutiveController;
 use App\Http\Controllers\HousingModelController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SubdivisionController;
@@ -155,6 +156,8 @@ Route::prefix('manager')->group(function () {
     });
 });
 
+
+// Admin
 Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login']);
     Route::middleware('auth:api_admin')->group(function () {
@@ -169,6 +172,7 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('subdivisions', SubdivisionController::class);
         Route::apiResource('housing_models', HousingModelController::class);
         Route::apiResource('messages', MessageController::class)->except('create', 'update');
+        Route::apiResource('posts', PostController::class);
 
         Route::get('support_conversations/{conversation}/resolve', [SupportConversationController::class, 'resolveConversation']);
         Route::post('support_conversations/{conversation}/send-message', [SupportConversationController::class, 'sendMessage']);
